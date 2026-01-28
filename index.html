@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Tarifas | Dark Mode</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate 900 */
+            color: #f1f5f9;
+        }
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7); /* Slate 800 with opacity */
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 1.25rem;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+        .glass-card:hover {
+            border-color: rgba(56, 189, 248, 0.2);
+        }
+        input, select {
+            background: rgba(15, 23, 42, 0.6) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            color: #f1f5f9 !important;
+        }
+        input:focus, select:focus {
+            border-color: #38bdf8 !important;
+            ring: 2px rgba(56, 189, 248, 0.2) !important;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .accent-gradient {
+            background: linear-gradient(135deg, #38bdf8 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-10 min-h-screen">
+    <div class="max-w-6xl mx-auto">
+        <header class="mb-12 text-center md:text-left">
+            <h1 class="text-4xl md:text-5xl font-extrabold mb-3 tracking-tight">
+                Calculadora de <span class="accent-gradient">Tarifas</span>
+            </h1>
+            <p class="text-slate-400 text-lg font-light max-w-2xl">
+                Define tu valor profesional con precisión quirúrgica basándote en costos, tiempo y mercado.
+            </p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- CONTROLES -->
+            <div class="lg:col-span-2 space-y-8">
+                
+                <!-- 1. COSTOS -->
+                <section class="glass-card p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-500/10 p-3 rounded-xl mr-4 text-blue-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h2 class="text-xl font-bold">1. Estructura de Costos</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-xs uppercase tracking-widest text-slate-400 font-bold">Gastos Mensuales Fijos</label>
+                            <input type="number" id="gfm" value="3000000" class="w-full p-3 rounded-xl outline-none transition" placeholder="COP">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs uppercase tracking-widest text-slate-400 font-bold">Inversión Anual (Equipos/Apps)</label>
+                            <input type="number" id="gva" value="5000000" class="w-full p-3 rounded-xl outline-none transition" placeholder="COP">
+                        </div>
+                        <div class="md:col-span-2 space-y-2">
+                            <label class="text-xs uppercase tracking-widest text-slate-400 font-bold">Sueldo Neto Anual Deseado</label>
+                            <input type="number" id="soa" value="72000000" class="w-full p-3 rounded-xl outline-none transition text-xl font-semibold text-blue-400" placeholder="COP">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 2. TIEMPO -->
+                <section class="glass-card p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-emerald-500/10 p-3 rounded-xl mr-4 text-emerald-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <h2 class="text-xl font-bold">2. Gestión del Tiempo</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-xs uppercase tracking-widest text-slate-400 font-bold">Horas de Trabajo/Semana</label>
+                            <input type="number" id="hts" value="40" class="w-full p-3 rounded-xl outline-none transition">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs uppercase tracking-widest text-slate-400 font-bold">Semanas de Vacaciones/Año</label>
+                            <input type="number" id="sla_free" value="4" class="w-full p-3 rounded-xl outline-none transition">
+                        </div>
+                        <div class="md:col-span-2 space-y-4 pt-2">
+                            <div class="flex justify-between items-center">
+                                <label class="text-xs uppercase tracking-widest text-slate-400 font-bold">% Tiempo Facturable</label>
+                                <span id="phf_val" class="font-bold text-emerald-400">70%</span>
+                            </div>
+                            <input type="range" id="phf" min="20" max="100" value="70" class="w-full h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-emerald-500">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 3. PROYECTO -->
+                <section class="glass-card p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-purple-500/10 p-3 rounded-xl mr-4 text-purple-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                            </svg>
+                        </div>
+                        <h2 class="text-xl font-bold">3. Parámetros del Proyecto</h2>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="space-y-2">
+                            <label class="text-xs uppercase tracking-widest text-slate-400 font-bold">Nivel de Experiencia / Mercado</label>
+                            <select id="factor_em" class="w-full p-3 rounded-xl outline-none transition cursor-pointer">
+                                <option value="1.0">Principiante (1.0x)</option>
+                                <option value="1.2">Junior Avanzado (1.2x)</option>
+                                <option value="1.5" selected>Intermedio / Senior (1.5x)</option>
+                                <option value="2.0">Experto / Especialista (2.0x)</option>
+                                <option value="3.0">Consultor Top (3.0x)</option>
+                            </select>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-slate-700/50">
+                            <div class="space-y-2">
+                                <label class="text-xs uppercase tracking-widest text-slate-400 font-bold">Horas Estimadas</label>
+                                <input type="number" id="hr" value="3" class="w-full p-3 rounded-xl outline-none transition font-bold text-purple-400">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-xs uppercase tracking-widest text-slate-400 font-bold">Margen Seguridad (%)</label>
+                                <input type="number" id="mb" value="15" class="w-full p-3 rounded-xl outline-none transition">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- RESULTADOS DASHBOARD -->
+            <div class="space-y-6">
+                <div class="glass-card p-8 border-t-4 border-blue-500 sticky top-10 overflow-hidden">
+                    <div class="absolute top-0 right-0 -mr-8 -mt-8 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl"></div>
+                    
+                    <h2 class="text-2xl font-black text-slate-100 mb-8 tracking-tight">Resultado Final</h2>
+                    
+                    <div class="space-y-5 relative z-10">
+                        <div class="flex justify-between items-center text-sm border-b border-slate-700 pb-3">
+                            <span class="text-slate-400">Costo Operativo Anual</span>
+                            <span id="res_cat" class="font-medium text-slate-200">$ 0</span>
+                        </div>
+                        <div class="flex justify-between items-center text-sm border-b border-slate-700 pb-3">
+                            <span class="text-slate-400">Horas Reales Facturables</span>
+                            <span id="res_hfa" class="font-medium text-slate-200">0 h</span>
+                        </div>
+                        <div class="flex justify-between items-center text-sm border-b border-slate-700 pb-3">
+                            <span class="text-slate-400">Tarifa de Supervivencia</span>
+                            <span id="res_thb" class="font-medium text-slate-200">$ 0</span>
+                        </div>
+                        
+                        <div class="pt-4">
+                            <p class="text-[10px] uppercase tracking-[0.2em] font-black text-blue-400 mb-2">Valor por Hora Sugerido</p>
+                            <p id="res_thf" class="text-4xl font-black text-white">$ 0</p>
+                        </div>
+
+                        <div class="mt-8 p-6 bg-gradient-to-br from-slate-900 to-slate-950 rounded-2xl border border-emerald-500/30 ring-4 ring-emerald-500/5">
+                            <p class="text-[10px] uppercase tracking-[0.2em] font-black text-emerald-400 mb-2 text-center">Precio por Proyecto</p>
+                            <p id="res_ppp" class="text-4xl font-black text-white text-center">$ 0</p>
+                            <div class="mt-4 flex justify-center">
+                                <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full font-bold">TOTAL ESTIMADO</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="reset_btn" class="w-full mt-8 py-3 text-xs font-bold text-slate-500 hover:text-white transition-all uppercase tracking-widest border border-slate-700 rounded-xl hover:bg-slate-700/50">
+                        Reiniciar Parámetros
+                    </button>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-gradient-to-r from-blue-600/10 to-purple-600/10 border border-blue-500/20 italic text-sm text-slate-300">
+                    <span class="text-blue-400 font-bold">Nota:</span> Esta tarifa ya contempla tus ahorros anuales y el costo de vida deseado. ¡No cobres menos de esto!
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="mt-16 py-8 border-t border-slate-800 text-center text-slate-500 text-xs">
+            <p>© 2025 Calculadora de Tarifas para Creativos | Diseño Moderno Dark</p>
+        </footer>
+    </div>
+
+    <script>
+        // Elementos del DOM
+        const inputs = ['gfm', 'gva', 'soa', 'hts', 'sla_free', 'phf', 'factor_em', 'hr', 'mb'];
+        const elements = {};
+        inputs.forEach(id => elements[id] = document.getElementById(id));
+        
+        const phfValLabel = document.getElementById('phf_val');
+        const resCat = document.getElementById('res_cat');
+        const resHfa = document.getElementById('res_hfa');
+        const resThb = document.getElementById('res_thb');
+        const resThf = document.getElementById('res_thf');
+        const resPpp = document.getElementById('res_ppp');
+        const resetBtn = document.getElementById('reset_btn');
+
+        // Formateador de moneda colombiana
+        const formatter = new Intl.NumberFormat('es-CO', {
+            style: 'currency',
+            currency: 'COP',
+            maximumFractionDigits: 0
+        });
+
+        function calculate() {
+            // Obtener valores de los inputs
+            const gfm = parseFloat(elements.gfm.value) || 0;
+            const gva = parseFloat(elements.gva.value) || 0;
+            const soa = parseFloat(elements.soa.value) || 0;
+            const hts = parseFloat(elements.hts.value) || 0;
+            const sla_free = parseFloat(elements.sla_free.value) || 0;
+            const phf = parseFloat(elements.phf.value) / 100;
+            const factor_em = parseFloat(elements.factor_em.value) || 1;
+            const hr = parseFloat(elements.hr.value) || 0;
+            const mb = parseFloat(elements.mb.value) / 100;
+
+            // 1. Costo Anual Total (CAT)
+            const cat = (gfm * 12) + gva + soa;
+
+            // 2. Horas Facturables Anuales (HFA)
+            const semanasTrabajo = 52 - sla_free;
+            const horasPotenciales = hts * semanasTrabajo;
+            const hfa = horasPotenciales * phf;
+
+            // 3. Tarifa Base por Hora (THB)
+            const thb = hfa > 0 ? cat / hfa : 0;
+
+            // 4. Tarifa Final por Hora (THF) con factor de mercado
+            const thf = thb * factor_em;
+
+            // 5. Precio por Proyecto (PPP)
+            const ppp = (thf * hr) * (1 + mb);
+
+            // Actualización de UI
+            phfValLabel.innerText = `${Math.round(phf * 100)}%`;
+            resCat.innerText = formatter.format(cat);
+            resHfa.innerText = `${Math.round(hfa)} h`;
+            resThb.innerText = `${formatter.format(thb)} /h`;
+            resThf.innerText = `${formatter.format(thf)}`;
+            resPpp.innerText = `${formatter.format(ppp)}`;
+        }
+
+        // Event Listeners
+        inputs.forEach(id => {
+            elements[id].addEventListener('input', calculate);
+        });
+
+        resetBtn.addEventListener('click', () => {
+            elements.gfm.value = 3000000;
+            elements.gva.value = 5000000;
+            elements.soa.value = 72000000;
+            elements.hts.value = 40;
+            elements.sla_free.value = 4;
+            elements.phf.value = 70;
+            elements.factor_em.value = 1.5;
+            elements.hr.value = 3;
+            elements.mb.value = 15;
+            calculate();
+        });
+
+        // Inicio inicial
+        window.onload = calculate;
+    </script>
+</body>
+</html>
